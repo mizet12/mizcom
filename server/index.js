@@ -5,8 +5,12 @@ const io = require('socket.io')(http, {
 });
 
 io.on('connection', (socket) => {
-    console.log('uzytkownik dolaczyl');
-
+    console.log('ktoś się połączył');
+    
+    socket.on('userJoin', (name) => {
+        console.log(`${name} dołączył`)
+        io.emit('userJoin', name)
+    });
     socket.on('sendMessage', (name, text) => {
         console.log(name, text);
         io.emit('sendMessage', name, text)

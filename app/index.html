@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="switch"><img src="icons/dark_mode.png" alt="Dark_mode" id="switch_image"></button>
     <div id="messages"></div>
-
+    
     <div id="join_form">
-        <label for="nick">Podaj swój nick: </label>
-        <input type="text" id="nick">
-        <button onclick="saveNick()">Dołącz do chatu</button>
+        <label for="nick"><h1>Podaj swój nick: </h1></label>
+        <input type="text" id="nick"><br>
+        <button onclick="saveNick()" id="joinChat"><h4>Dołącz do chatu</h4></button>
     </div>
 
     <div id="message_form">
-        <input type="text" placeholder="wiadomosc" id="text">
-        <button id="switch">dark mode</button>
+        <input type="text" placeholder="Napisz wiadomość na chatcie" id="text">
     </div>
-
+    
     <script src="app.js"></script>
 </body>
 </html>

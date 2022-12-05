@@ -1,23 +1,63 @@
 let userNick = null;
-const socket = io('ws://localhost:8080');
+const socket = io('ws://192.168.8.20:8080');
 
 const joinForm = document.getElementById("join_form");
 const messageForm = document.getElementById("message_form");
 const messagesContainer = document.getElementById("messages");
+const linkReg = /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/;
 function saveNick() {
     const nickInput = document.getElementById("nick");
+    const nickData = document.getElementById("nick").value;
     if(!nickInput.value?.trim()) return;
     userNick = nickInput.value;
     joinForm.style.display = "none";
     messageForm.style.display = "block";
+    if(Notification !== 'granted'){
+        Notification.requestPermission();
+    }
 
-    const socket = io("ws://localhost:8080");
+    const socket = io("ws://192.168.8.20:8080");
     socket.on("sendMessage", (nick, text) => {
-        const el = document.createElement("div");
-        el.classList.add("message");
-        el.innerText = `${nick}: ${text}`;
-        messagesContainer.appendChild(el);
+        if(linkReg.test(text) == true){
+            const a = document.createElement("a");
+            const el = document.createElement("div")
+            // el.classList.add("links");
+            a.href = `${text}`;
+            el.innerText = `${nick}:`;
+            a.innerText = `${text}`;
+            el.appendChild(a);
+            messagesContainer.appendChild(el);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else{
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }
+        scrollToBottom();
     });
+    const showNotifications = () => {
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission();
+          } else {
+            const options = {
+              body: 'Wiadomość',
+            };
+            const notification = new Notification('Notification', options);
+            console.log("kom")
+            notification.onclick = function () {
+              window.open('192.168.8.20/mizcom/app');
+            };
+          }
+    }
+    const scrollToBottom = () => {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+     }
     socket.on("userJoin", (nick) => {
         const el = document.createElement("div");
         el.classList.add("announcment");
@@ -32,6 +72,7 @@ sendMessageInput.addEventListener("keypress", (e) => {
      if(e.key === "Enter" && e.target.value?.trim()) {
          sendMessage(userNick, e.target.value);
         e.target.value = "";
+        
      }
 });
 

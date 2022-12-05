@@ -47,7 +47,7 @@
 }
 #messages{
     position: absolute;
-    max-height: 900px;
+    max-height: 850px;
     overflow-y: auto;
     width: 99%;
 

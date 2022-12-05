@@ -44,13 +44,14 @@
 
 .announcment{
     color: orangered;
+    font-size: 150%;
 }
 #messages{
     position: absolute;
-    max-height: 850px;
+    max-height: 890px;
     overflow-y: auto;
     width: 99%;
-
+    font-size: 150%;
 }
 #text{
     width: 100%;
@@ -58,3 +59,4 @@
     margin: 30px;
     border-radius: 15px;
 }
+

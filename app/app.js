@@ -1,10 +1,11 @@
 let userNick = null;
-const socket = io('ws://192.168.8.20:8080');
+const socket = io('ws://localhost:8080');
 
 const joinForm = document.getElementById("join_form");
 const messageForm = document.getElementById("message_form");
 const messagesContainer = document.getElementById("messages");
 const linkReg = /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/;
+const imageReg = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/;
 function saveNick() {
     const nickInput = document.getElementById("nick");
     const nickData = document.getElementById("nick").value;
@@ -16,11 +17,23 @@ function saveNick() {
         Notification.requestPermission();
     }
 
-    const socket = io("ws://192.168.8.20:8080");
+    const socket = io("ws://localhost:8080");
     socket.on("sendMessage", (nick, text) => {
-        if(linkReg.test(text) == true){
+        if(imageReg.test(text) == true){
+            const image = document.createElement("img");
+            const el = document.createElement("div");
+            // el.classList.add("links");
+            image.src = `${text}`;
+            el.innerText = `${nick}:`;
+            
+            el.appendChild(image);
+            messagesContainer.appendChild(el);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(linkReg.test(text) == true){
             const a = document.createElement("a");
-            const el = document.createElement("div")
+            const el = document.createElement("div");
             // el.classList.add("links");
             a.href = `${text}`;
             el.innerText = `${nick}:`;

@@ -1,3 +1,4 @@
+
 #message_form{
     display: none;
     bottom: 10px;
@@ -5,18 +6,21 @@
     width: 90%;
     font-size: xx-large;
     margin-top: 10px;
-    height: 10%;
+    height: 7%;
     text-align: center;
 }
+
 *{
     transition: 0.2s;
     font-family: "Comic Sans MS";
 }
+
 #join_form{
     font-size: 150%;
     text-align: center;
     padding: 150px; 
 }
+
 #switch{
     float: right;
     position: relative;
@@ -26,17 +30,20 @@
     margin-right: 30px;
     z-index: 100;
 }
+
 #switch_image{
     height: 100px;
     width: 100px;
 }
+
 #joinChat{
     width: 200px;
     border-radius: 30px;
     background-color: rgb(207, 207, 207);
     padding: 3px;
 }
-#nick{
+
+#nick, #profPicture{
     font-size: x-large;
     margin: 30px;
     padding: 10px;
@@ -46,6 +53,7 @@
     color: orangered;
     font-size: 150%;
 }
+
 #messages{
     position: absolute;
     max-height: 890px;
@@ -53,10 +61,57 @@
     width: 99%;
     font-size: 150%;
 }
+
 #text{
     width: 100%;
     font-size: xx-large;
-    margin: 30px;
     border-radius: 15px;
 }
 
+#emoji_image{
+    height: 60px;
+    width: 60px;
+}
+
+#emoji_button{
+    margin-left: 20px;
+    background-color: white;
+    z-index: 999;
+}
+
+/* #emoji_button:hover{
+    background-color: dimgray;
+} */
+
+#emoji_div{
+    width: 300px;
+    height: 400px;
+    background-color: rgb(207, 207, 207);
+    bottom: 85px;
+    position: fixed;
+    float: right;
+    right: 30px;
+    display: none;
+    border: 1px solid black;
+    border-radius: 10%;
+    overflow-y: auto;
+    text-align: center;
+}
+
+#clickoff{
+    z-index: -1;
+    width: 1870px;
+    height: 930px;
+    display: none;
+    top: 0px;
+}
+.emojis{
+    margin: 25px;
+    width: 44px;
+    margin-right: 25px;
+    left: 0px;
+    float: left;
+}
+.emojis:hover{
+    cursor: pointer;
+}

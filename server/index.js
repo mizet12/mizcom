@@ -11,9 +11,9 @@ io.on('connection', (socket) => {
         console.log(`${name} dołączył`)
         io.emit('userJoin', name)
     });
-    socket.on('sendMessage', (name, text) => {
+    socket.on('sendMessage', (picture, name, text) => {
         console.log(name, text);
-        io.emit('sendMessage', name, text)
+        io.emit('sendMessage', picture, name, text)
     });
 });
 

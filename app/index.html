@@ -17,11 +17,24 @@
         <input type="text" id="nick"><br>
         <button onclick="saveNick()" id="joinChat"><h4>Dołącz do chatu</h4></button>
     </div>
-
-    <div id="message_form">
-        <input type="text" placeholder="Napisz wiadomość na chatcie" id="text">
+    <div id="emoji_div">
+        <h1 class="emojis" id="hamburger">🍔</h1>
+        <h1 class="emojis" id="happy">😀</h1>
+        <h1 class="emojis" id="wink">😉</h1>
+        <h1 class="emojis" id="sleep">😴</h1>
+        <h1 class="emojis" id="none">😑</h1>
+        <h1 class="emojis" id="angry">😡</h1>
+        <h1 class="emojis" id="sad">😢</h1>
+        <h1 class="emojis" id="freez">🥶</h1>
+        <h1 class="emojis" id="moyai">🗿</h1>
+        <h1 class="emojis" id="hearth">❤️</h1>
+        <h1 class="emojis" id="blink">✨</h1>
+        <h1 class="emojis" id="potato">🥔</h1>
     </div>
-    
+    <div id="message_form">
+        <input type="text" placeholder="Napisz wiadomość na chatcie" id="text"><button id="emoji_button"><img src="icons/emoji_d.png" alt="" id="emoji_image"></button>
+    </div>
+    <div id="clickoff"></div>
     <script src="app.js"></script>
 </body>
 </html>

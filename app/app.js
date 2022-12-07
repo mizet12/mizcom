@@ -4,6 +4,7 @@ const socket = io('ws://localhost:8080');
 const joinForm = document.getElementById("join_form");
 const messageForm = document.getElementById("message_form");
 const messagesContainer = document.getElementById("messages");
+const body = document.getElementById("clickoff");
 const linkReg = /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/;
 const imageReg = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/;
 function saveNick() {
@@ -12,7 +13,8 @@ function saveNick() {
     if(!nickInput.value?.trim()) return;
     userNick = nickInput.value;
     joinForm.style.display = "none";
-    messageForm.style.display = "block";
+    messageForm.style.display = "flex";
+    body.style.display = "block";
     if(Notification !== 'granted'){
         Notification.requestPermission();
     }
@@ -36,7 +38,7 @@ function saveNick() {
             const el = document.createElement("div");
             // el.classList.add("links");
             a.href = `${text}`;
-            el.innerText = `${nick}:`;
+            el.innerText = `${nick}: `;
             a.innerText = `${text}`;
             el.appendChild(a);
             messagesContainer.appendChild(el);
@@ -79,7 +81,9 @@ function saveNick() {
     });
     socket.emit("userJoin", userNick);
 }
+
 const sendMessageInput = document.getElementById("text");
+
 sendMessageInput.addEventListener("keypress", (e) => {
     console.log(e)
      if(e.key === "Enter" && e.target.value?.trim()) {
@@ -93,12 +97,52 @@ function sendMessage(name, text) {
     socket.emit("sendMessage", name, text);
 }
 
-
+document.getElementById("hamburger").addEventListener('click', () => {
+    sendMessageInput.value += "🍔"
+})
+document.getElementById("happy").addEventListener('click', () => {
+    sendMessageInput.value += "😀"
+})
+document.getElementById("wink").addEventListener('click', () => {
+    sendMessageInput.value += "😉"
+})
+document.getElementById("angry").addEventListener('click', () => {
+    sendMessageInput.value += "😡"
+})
+document.getElementById("sleep").addEventListener('click', () => {
+    sendMessageInput.value += "😴"
+})
+document.getElementById("freez").addEventListener('click', () => {
+    sendMessageInput.value += "🥶"
+})
+document.getElementById("moyai").addEventListener('click', () => {
+    sendMessageInput.value += "🗿"
+})
+document.getElementById("hearth").addEventListener('click', () => {
+    sendMessageInput.value += "❤️"
+})
+document.getElementById("blink").addEventListener('click', () => {
+    sendMessageInput.value += "✨"
+})
+document.getElementById("none").addEventListener('click', () => {
+    sendMessageInput.value += "😑"
+})
+document.getElementById("sad").addEventListener('click', () => {
+    sendMessageInput.value += "😢"
+})
+document.getElementById("potato").addEventListener('click', () => {
+    sendMessageInput.value += "🥔"
+})
 
 
 let isDarkModeEnabled = false;
+let isEmojiMenuShown = false;
 const switchModeButton = document.getElementById("switch_image");
 const joinChatButton = document.getElementById("joinChat");
+const emojiImage = document.getElementById("emoji_image");
+const emojiButton = document.getElementById("emoji_button");
+const emojiDiv = document.getElementById("emoji_div");
+
 
 switchModeButton.addEventListener('click', () => {
     const elements = [
@@ -114,9 +158,27 @@ switchModeButton.addEventListener('click', () => {
         switchModeButton.style.borderRadius = isDarkModeEnabled ? "0%" : "15%"
         switchModeButton.style.backgroundColor = isDarkModeEnabled ? "#" : "white";
         joinChatButton.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(102, 102, 102)";
-
+        emojiButton.style.border = isDarkModeEnabled ? "1px solid black" : "1px solid white";
+        emojiDiv.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(88, 88, 88)";
     });
 
     switchModeButton.src = isDarkModeEnabled ? "icons/dark_mode.png" : "icons/light_mode.jpg";
+    emojiImage.src = isDarkModeEnabled ? "icons/emoji_d.png" : "icons/emoji_l.png";
     isDarkModeEnabled = !isDarkModeEnabled;
 });
+
+emojiButton.addEventListener('click', () => {
+
+    const elements = [
+        document.getElementById("emoji_div")
+    ];
+
+    elements.forEach(el => {
+        el.style.display = isEmojiMenuShown ? "none" : "block";
+    })
+    isEmojiMenuShown = !isEmojiMenuShown;
+});
+
+body.addEventListener('click', () => {
+    emojiDiv.style.display = "none";
+})

@@ -98,13 +98,6 @@
     text-align: center;
 }
 
-#clickoff{
-    z-index: -1;
-    width: 1870px;
-    height: 930px;
-    display: none;
-    top: 0px;
-}
 .emojis{
     margin: 25px;
     width: 44px;

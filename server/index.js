@@ -42,6 +42,7 @@ io.on('connection', (socket) => {
         db.query(`Insert INTO chat(nick, wiadomosc) Values ('${name}', '${text}');`)
         io.emit('sendMessage', name, text)
     });
+
     socket.on('userJoin', (name) => {
         console.log(`${name} dołączył`)
         io.emit('userJoin', name)

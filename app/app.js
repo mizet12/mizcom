@@ -1,25 +1,267 @@
 let userNick = null;
-const socket = io('ws://localhost:8080');
-
+const socket = io("ws://localhost:8080");
 const joinForm = document.getElementById("join_form");
 const messageForm = document.getElementById("message_form");
 const messagesContainer = document.getElementById("messages");
 const linkReg = /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/;
 const imageReg = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/;
+
+
+
 function saveNick() {
+
     const nickInput = document.getElementById("nick");
     const nickData = document.getElementById("nick").value;
-    if(!nickInput.value?.trim()) return;
-    userNick = nickInput.value;
-    joinForm.style.display = "none";
-    messageForm.style.display = "flex";
-    if(Notification !== 'granted'){
-        Notification.requestPermission();
-    }
 
+    if(!nickInput.value?.trim() || nickInput.value.length > 20)
+     {
+        alert("Podaj nick pomiędzy 1 a 20 znakami");
+        return;
+    }else{
+        userNick = nickInput.value;
+        joinForm.style.display = "none";
+        messageForm.style.display = "flex";
+        if(Notification !== 'granted'){
+            Notification.requestPermission();
+        }
+    };
+
+
+
+    
     const socket = io("ws://localhost:8080");
-    socket.on("sendMessage", (nick, text) => {
+    socket.on("chatHistory", (nick, tekst) =>{
+        let text
+            if(tekst.includes(":burger:")){
+                tekst = tekst.replace(':burger:', '🍔')
+            }  if(tekst.includes(":happy:")){
+                tekst = tekst.replace(":happy:", "😀" )
+            }  if(tekst.includes(":wink:")){
+                tekst = tekst.replace( ":wink:", "😉")
+            }  if(tekst.includes(":zzz:")){
+                tekst = tekst.replace(":zzz:", "😴")
+            }  if(tekst.includes(":mmm:")){
+                tekst = tekst.replace(":mmm:", "😑")
+            }  if(tekst.includes(":angry:")){
+                tekst = tekst.replace(":angry:", "😡")
+            }  if(tekst.includes(":sad:")){
+                tekst = tekst.replace(":sad:", "😢")
+            }  if(tekst.includes(":freez:")){
+                tekst = tekst.replace(":freez:", "🥶")
+            }  if(tekst.includes(":moyai:")){
+                tekst = tekst.replace(":moyai:", "🗿")
+            }  if(tekst.includes(":hearth:")){
+                tekst = tekst.replace(":hearth:", "❤️")
+            }  if(tekst.includes(":blink:")){
+                tekst = tekst.replace(":blink:", "✨")
+            }  if(tekst.includes(":potato:")){
+                tekst = tekst.replace(":potato:", "🥔")
+            }  if(tekst.includes(":Victory:")){
+                tekst = tekst.replace(":Victory:", "✌")
+            }  if(tekst.includes(":tiruriru:")){
+                tekst = tekst.replace(":tiruriru:", "🤙")
+            }  if(tekst.includes(":left:")){
+                tekst = tekst.replace(":left:", "👈")
+            }  if(tekst.includes(":right:")){
+                tekst = tekst.replace(":right:", "👉")
+            }  if(tekst.includes(":flipoff:")){
+                tekst = tekst.replace(":flipoff:", "🖕")
+            }  if(tekst.includes(":highfive:")){
+                tekst = tekst.replace(":highfive:", "🖐")
+            }  if(tekst.includes(":ok:")){
+                tekst = tekst.replace(":ok:", "👌")
+            }  if(tekst.includes(":like:")){
+                tekst = tekst.replace(":like:", "👍")
+            }  if(tekst.includes(":dislike:")){
+                tekst = tekst.replace(":dislike:", "👎")
+            }  if(tekst.includes(":brofist:")){
+                tekst = tekst.replace(":brofist:", "👊")
+            }  if(tekst.includes(":hello:")){
+                tekst = tekst.replace(":hello:", "👋")
+            }  if(tekst.includes(":robo:")){
+                tekst = tekst.replace(":robo:", "🦾")
+            }  if(tekst.includes(":shocked:")){
+                tekst = tekst.replace(":shocked:", "😱")
+            }  if(tekst.includes(":poo:")){
+                tekst = tekst.replace(":poo:", "💩")
+            }  if(tekst.includes(":urokodaki:")){
+                tekst = tekst.replace(":urokodaki:", "👺")
+            }  if(tekst.includes(":oni:")){
+                tekst = tekst.replace(":oni:", "👹")
+            }  if(tekst.includes(":alien:")){
+                tekst = tekst.replace(":alien:", "👽")
+            }  if(tekst.includes(":skull:")){
+                tekst = tekst.replace(":skull:", "☠")
+            }  if(tekst.includes(":ghost:")){
+                tekst = tekst.replace(":ghost:", "👻")
+            }  if(tekst.includes(":eye:")){
+                tekst = tekst.replace(":eye:", "👁")
+            }  if(tekst.includes(":rainbow:")){
+                tekst = tekst.replace(":rainbow:", "🌈")
+            }  if(tekst.includes(":dik:")){
+                tekst = tekst.replace(":dik:", "🍆")
+            }  if(tekst.includes(":as:")){
+                tekst = tekst.replace(":as:", "🍑")
+            }  if(tekst.includes(":pizza:")){
+                tekst = tekst.replace(":pizza:", "🍕")
+            }  if(tekst.includes(":radio:")){
+                tekst = tekst.replace(":radio:", "☢")
+            }  if(tekst.includes(":virus:")){
+                tekst = tekst.replace(":virus:", "☣")
+            }  if(tekst.includes(":mad:")){
+                tekst = tekst.replace(":mad:", "💢")
+            }  if(tekst.includes(":ramen:")){
+                tekst = tekst.replace(":ramen:", "🍜")
+            }  if(tekst.includes(":onigiri:")){
+                tekst = tekst.replace(":onigiri:", "🍙")
+            }  if(tekst.includes(":sushi:")){
+                tekst = tekst.replace(":sushi:", "🍣")
+            }  if(tekst.includes(":naruto:")){
+                tekst = tekst.replace(":naruto:", "🍥")
+            }  if(tekst.includes(":lunch:")){
+                tekst = tekst.replace(":lunch:", "🥡")
+            }  if(tekst.includes(":donut:")){
+                tekst = tekst.replace(":donut:", "🍩")
+            }  if(tekst.includes(":cookie:")){
+                tekst = tekst.replace(":cookie:", "🍪")
+            }  if(tekst.includes(":gate:")){
+                tekst = tekst.replace(":gate:", "⛩️")
+            }  if(tekst.includes(":kanji:")){
+                tekst = tekst.replace(":kanji:", "🉐")
+            }  if(tekst.includes(":headphones:")){
+                tekst = tekst.replace(":headphones:", "🎧")
+            }  if(tekst.includes(":mugiwara:")){
+                tekst = tekst.replace(":mugiwara:", "👒")
+            }  if(tekst.includes(":pirate:")){
+                tekst = tekst.replace(":pirate:", "🏴‍☠")
+            }  if(tekst.includes(":meat:")){
+                tekst = tekst.replace(":meat:", "🍖")
+            }  if(tekst.includes(":dragon:")){
+                tekst = tekst.replace(":dragon:", "🐉")
+            }  if(tekst.includes(":yinyang:")){
+                tekst = tekst.replace(":yinyang:", "☯", )
+            }
+            text = tekst;
+        const el = document.createElement("div");
+        el.innerText = `${nick}: ${text}`;
+        messagesContainer.appendChild(el);
+    })
+    socket.on("sendMessage", (nick, tekst) => {
+            let text
+            if(tekst.includes(":burger:")){
+                tekst = tekst.replace(':burger:', '🍔')
+            }  if(tekst.includes(":happy:")){
+                tekst = tekst.replace(":happy:", "😀" )
+            }  if(tekst.includes(":wink:")){
+                tekst = tekst.replace( ":wink:", "😉")
+            }  if(tekst.includes(":zzz:")){
+                tekst = tekst.replace(":zzz:", "😴")
+            }  if(tekst.includes(":mmm:")){
+                tekst = tekst.replace(":mmm:", "😑")
+            }  if(tekst.includes(":angry:")){
+                tekst = tekst.replace(":angry:", "😡")
+            }  if(tekst.includes(":sad:")){
+                tekst = tekst.replace(":sad:", "😢")
+            }  if(tekst.includes(":freez:")){
+                tekst = tekst.replace(":freez:", "🥶")
+            }  if(tekst.includes(":moyai:")){
+                tekst = tekst.replace(":moyai:", "🗿")
+            }  if(tekst.includes(":hearth:")){
+                tekst = tekst.replace(":hearth:", "❤️")
+            }  if(tekst.includes(":blink:")){
+                tekst = tekst.replace(":blink:", "✨")
+            }  if(tekst.includes(":potato:")){
+                tekst = tekst.replace(":potato:", "🥔")
+            }  if(tekst.includes(":Victory:")){
+                tekst = tekst.replace(":Victory:", "✌")
+            }  if(tekst.includes(":tiruriru:")){
+                tekst = tekst.replace(":tiruriru:", "🤙")
+            }  if(tekst.includes(":left:")){
+                tekst = tekst.replace(":left:", "👈")
+            }  if(tekst.includes(":right:")){
+                tekst = tekst.replace(":right:", "👉")
+            }  if(tekst.includes(":flipoff:")){
+                tekst = tekst.replace(":flipoff:", "🖕")
+            }  if(tekst.includes(":highfive:")){
+                tekst = tekst.replace(":highfive:", "🖐")
+            }  if(tekst.includes(":ok:")){
+                tekst = tekst.replace(":ok:", "👌")
+            }  if(tekst.includes(":like:")){
+                tekst = tekst.replace(":like:", "👍")
+            }  if(tekst.includes(":dislike:")){
+                tekst = tekst.replace(":dislike:", "👎")
+            }  if(tekst.includes(":brofist:")){
+                tekst = tekst.replace(":brofist:", "👊")
+            }  if(tekst.includes(":hello:")){
+                tekst = tekst.replace(":hello:", "👋")
+            }  if(tekst.includes(":robo:")){
+                tekst = tekst.replace(":robo:", "🦾")
+            }  if(tekst.includes(":shocked:")){
+                tekst = tekst.replace(":shocked:", "😱")
+            }  if(tekst.includes(":poo:")){
+                tekst = tekst.replace(":poo:", "💩")
+            }  if(tekst.includes(":urokodaki:")){
+                tekst = tekst.replace(":urokodaki:", "👺")
+            }  if(tekst.includes(":oni:")){
+                tekst = tekst.replace(":oni:", "👹")
+            }  if(tekst.includes(":alien:")){
+                tekst = tekst.replace(":alien:", "👽")
+            }  if(tekst.includes(":skull:")){
+                tekst = tekst.replace(":skull:", "☠")
+            }  if(tekst.includes(":ghost:")){
+                tekst = tekst.replace(":ghost:", "👻")
+            }  if(tekst.includes(":eye:")){
+                tekst = tekst.replace(":eye:", "👁")
+            }  if(tekst.includes(":rainbow:")){
+                tekst = tekst.replace(":rainbow:", "🌈")
+            }  if(tekst.includes(":dik:")){
+                tekst = tekst.replace(":dik:", "🍆")
+            }  if(tekst.includes(":as:")){
+                tekst = tekst.replace(":as:", "🍑")
+            }  if(tekst.includes(":pizza:")){
+                tekst = tekst.replace(":pizza:", "🍕")
+            }  if(tekst.includes(":radio:")){
+                tekst = tekst.replace(":radio:", "☢")
+            }  if(tekst.includes(":virus:")){
+                tekst = tekst.replace(":virus:", "☣")
+            }  if(tekst.includes(":mad:")){
+                tekst = tekst.replace(":mad:", "💢")
+            }  if(tekst.includes(":ramen:")){
+                tekst = tekst.replace(":ramen:", "🍜")
+            }  if(tekst.includes(":onigiri:")){
+                tekst = tekst.replace(":onigiri:", "🍙")
+            }  if(tekst.includes(":sushi:")){
+                tekst = tekst.replace(":sushi:", "🍣")
+            }  if(tekst.includes(":naruto:")){
+                tekst = tekst.replace(":naruto:", "🍥")
+            }  if(tekst.includes(":lunch:")){
+                tekst = tekst.replace(":lunch:", "🥡")
+            }  if(tekst.includes(":donut:")){
+                tekst = tekst.replace(":donut:", "🍩")
+            }  if(tekst.includes(":cookie:")){
+                tekst = tekst.replace(":cookie:", "🍪")
+            }  if(tekst.includes(":gate:")){
+                tekst = tekst.replace(":gate:", "⛩️")
+            }  if(tekst.includes(":kanji:")){
+                tekst = tekst.replace(":kanji:", "🉐")
+            }  if(tekst.includes(":headphones:")){
+                tekst = tekst.replace(":headphones:", "🎧")
+            }  if(tekst.includes(":mugiwara:")){
+                tekst = tekst.replace(":mugiwara:", "👒")
+            }  if(tekst.includes(":pirate:")){
+                tekst = tekst.replace(":pirate:", "🏴‍☠")
+            }  if(tekst.includes(":meat:")){
+                tekst = tekst.replace(":meat:", "🍖")
+            }  if(tekst.includes(":dragon:")){
+                tekst = tekst.replace(":dragon:", "🐉")
+            }  if(tekst.includes(":yinyang:")){
+                tekst = tekst.replace(":yinyang:", "☯", )
+            }
+            text = tekst;
         if(imageReg.test(text) == true){
+            if(userNick !== nickInput.value){
+                return;
+            }
             const image = document.createElement("img");
             const el = document.createElement("div");
             // el.classList.add("links");
@@ -32,6 +274,9 @@ function saveNick() {
                 showNotifications();
             }
         }else if(linkReg.test(text) == true){
+            if(userNick !== nickInput.value){
+                return;
+            }
             const a = document.createElement("a");
             const el = document.createElement("div");
             // el.classList.add("links");
@@ -44,6 +289,9 @@ function saveNick() {
                 showNotifications();
             }
         }else if(text == "👒🏴‍☠🍖" || text == "🍖🏴‍☠👒" || text == "🏴‍☠🍖👒" || text == "🏴‍☠👒🍖" || text == "🍖👒🏴‍☠" || text == "👒🍖🏴‍☠"){
+            if(userNick !== nickInput.value){
+                return;
+            }
             document.getElementById("op").play();
             const el = document.createElement("div");
             el.classList.add("message");
@@ -57,7 +305,26 @@ function saveNick() {
             if(nick !== nickData){
                 showNotifications();
             }
+        }else if(text == "🍆🍑" || text == "🍑🍆"){
+            if(userNick !== nickInput.value){
+                return;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            document.querySelector("body").style.backgroundImage = "url('media/ahe_gao.png')";
+            document.querySelector("body").style.backgroundRepeat = "no-repeat";
+            document.querySelector("body").style.backgroundPosition = "40% 25%";
+            document.querySelector("body").style.backgroundSize = "1300px";
+            // document.querySelector("body").style.backgroundPositionY = "10px";
+            if(nick !== nickData){
+                showNotifications();
+            }
         }else{
+            if(userNick !== nickInput.value){
+                return;
+            }
             const el = document.createElement("div");
             el.classList.add("message");
             el.innerText = `${nick}: ${text}`;
@@ -68,6 +335,8 @@ function saveNick() {
         }
         scrollToBottom();
     });
+
+    
     const showNotifications = () => {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission();
@@ -105,7 +374,118 @@ sendMessageInput.addEventListener("keypress", (e) => {
      }
 });
 
-function sendMessage(name, text) {
+function sendMessage(name, tekst) {
+    let text
+    if(tekst.includes("🍔")){
+        tekst = tekst.replace('🍔', ':burger:')
+    }  if(tekst.includes("😀")){
+        tekst = tekst.replace("😀", ":happy:")
+    }  if(tekst.includes("😉")){
+        tekst = tekst.replace("😉", ":wink:")
+    }  if(tekst.includes("😴")){
+        tekst = tekst.replace("😴", ":zzz:")
+    }  if(tekst.includes("😑")){
+        tekst = tekst.replace("😑", ":mmm:")
+    }  if(tekst.includes("😡")){
+        tekst = tekst.replace("😡", ":angry:")
+    }  if(tekst.includes("😢")){
+        tekst = tekst.replace("😢", ":sad:")
+    }  if(tekst.includes("🥶")){
+        tekst = tekst.replace("🥶", ":freez:")
+    }  if(tekst.includes("🗿")){
+        tekst = tekst.replace("🗿", ":moyai:")
+    }  if(tekst.includes("❤️")){
+        tekst = tekst.replace("❤️", ":hearth:")
+    }  if(tekst.includes("✨")){
+        tekst = tekst.replace("✨", ":blink:")
+    }  if(tekst.includes("🥔")){
+        tekst = tekst.replace("🥔", ":potato:")
+    }  if(tekst.includes("✌")){
+        tekst = tekst.replace("✌", ":Victory:")
+    }  if(tekst.includes("🤙")){
+        tekst = tekst.replace("🤙", ":tiruriru:")
+    }  if(tekst.includes("👈")){
+        tekst = tekst.replace("👈", ":left:")
+    }  if(tekst.includes("👉")){
+        tekst = tekst.replace("👉", ":right:")
+    }  if(tekst.includes("🖕")){
+        tekst = tekst.replace("🖕", ":flipoff:")
+    }  if(tekst.includes("🖐")){
+        tekst = tekst.replace("🖐", ":highfive:")
+    }  if(tekst.includes("👌")){
+        tekst = tekst.replace("👌", ":ok:")
+    }  if(tekst.includes("👍")){
+        tekst = tekst.replace("👍", ":like:")
+    }  if(tekst.includes("👎")){
+        tekst = tekst.replace("👎", ":dislike:")
+    }  if(tekst.includes("👊")){
+        tekst = tekst.replace("👊", ":brofist:")
+    }  if(tekst.includes("👋")){
+        tekst = tekst.replace("👋", ":hello:")
+    }  if(tekst.includes("🦾")){
+        tekst = tekst.replace("🦾", ":robo:")
+    }  if(tekst.includes("😱")){
+        tekst = tekst.replace("😱", ":shocked:")
+    }  if(tekst.includes("💩")){
+        tekst = tekst.replace("💩", ":poo:")
+    }  if(tekst.includes("👺")){
+        tekst = tekst.replace("👺", ":urokodaki:")
+    }  if(tekst.includes("👹")){
+        tekst = tekst.replace("👹", ":oni:")
+    }  if(tekst.includes("👽")){
+        tekst = tekst.replace("👽", ":alien:")
+    }  if(tekst.includes("☠")){
+        tekst = tekst.replace("☠", ":skull:")
+    }  if(tekst.includes("👻")){
+        tekst = tekst.replace("👻", ":ghost:")
+    }  if(tekst.includes("👁")){
+        tekst = tekst.replace("👁", ":eye:")
+    }  if(tekst.includes("🌈")){
+        tekst = tekst.replace("🌈", ":rainbow:")
+    }  if(tekst.includes("🍆")){
+        tekst = tekst.replace("🍆", ":dik:")
+    }  if(tekst.includes("🍑")){
+        tekst = tekst.replace("🍑", ":as:")
+    }  if(tekst.includes("🍕")){
+        tekst = tekst.replace("🍕", ":pizza:")
+    }  if(tekst.includes("☢")){
+        tekst = tekst.replace("☢", ":radio:")
+    }  if(tekst.includes("☣")){
+        tekst = tekst.replace("☣", ":virus:")
+    }  if(tekst.includes("💢")){
+        tekst = tekst.replace("💢", ":mad:")
+    }  if(tekst.includes("🍜")){
+        tekst = tekst.replace("🍜", ":ramen:")
+    }  if(tekst.includes("🍙")){
+        tekst = tekst.replace("🍙", ":onigiri:")
+    }  if(tekst.includes("🍣")){
+        tekst = tekst.replace("🍣", ":sushi:")
+    }  if(tekst.includes("🍥")){
+        tekst = tekst.replace("🍥", ":naruto:")
+    }  if(tekst.includes("🥡")){
+        tekst = tekst.replace("🥡", ":lunch:")
+    }  if(tekst.includes("🍩")){
+        tekst = tekst.replace("🍩", ":donut:")
+    }  if(tekst.includes("🍪")){
+        tekst = tekst.replace("🍪", ":cookie:")
+    }  if(tekst.includes("⛩️")){
+        tekst = tekst.replace("⛩️", ":gate:")
+    }  if(tekst.includes("🉐")){
+        tekst = tekst.replace("🉐", ":kanji:")
+    }  if(tekst.includes("🎧")){
+        tekst = tekst.replace("🎧", ":headphones:")
+    }  if(tekst.includes("👒")){
+        tekst = tekst.replace("👒", ":mugiwara:")
+    }  if(tekst.includes("🏴‍☠")){
+        tekst = tekst.replace("🏴‍☠", ":pirate:")
+    }  if(tekst.includes("🍖")){
+        tekst = tekst.replace("🍖", ":meat:")
+    }  if(tekst.includes("🐉")){
+        tekst = tekst.replace("🐉", ":dragon:")
+    }  if(tekst.includes("☯")){
+        tekst = tekst.replace("☯", ":yinyang:")
+    }
+    text = tekst;
     socket.emit("sendMessage", name, text);
 }
 
@@ -223,7 +603,7 @@ document.getElementById("radio").addEventListener('click', () => {
 document.getElementById("virus").addEventListener('click', () => {
     sendMessageInput.value += "☣"
 })
-document.getElementById("angry").addEventListener('click', () => {
+document.getElementById("mad").addEventListener('click', () => {
     sendMessageInput.value += "💢"
 })
 document.getElementById("ramen").addEventListener('click', () => {

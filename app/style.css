@@ -1,4 +1,3 @@
-
 #message_form{
     display: none;
     bottom: 10px;
@@ -11,7 +10,7 @@
 }
 
 *{
-    transition: 0.2s;
+    transition: 0.4s;
     font-family: "Comic Sans MS";
 }
 
@@ -77,11 +76,12 @@
     margin-left: 20px;
     background-color: white;
     z-index: 999;
+    height: 65px;
 }
 
-/* #emoji_button:hover{
-    background-color: dimgray;
-} */
+ #emoji_button:hover{
+    cursor: pointer;
+} 
 
 #emoji_div{
     width: 300px;
@@ -90,18 +90,20 @@
     bottom: 85px;
     position: fixed;
     float: right;
-    right: 30px;
+    right: 60px;
     display: none;
     border: 1px solid black;
     border-radius: 10%;
     overflow-y: auto;
-    text-align: center;
+    scroll-behavior: smooth;
+}
+#emoji_div::-webkit-scrollbar{
+    display: none;
 }
 
 .emojis{
-    margin: 25px;
+    margin: 27px;
     width: 44px;
-    margin-right: 25px;
     left: 0px;
     float: left;
 }

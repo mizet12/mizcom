@@ -22,7 +22,6 @@ io.on('connection', (socket) => {
     });
 
     var con = 0;
-    
     db.query("Select * from chat", (err, result) => {
         if(err){throw err;}
         while(con < result.length){
@@ -30,7 +29,6 @@ io.on('connection', (socket) => {
             con++;
         } 
     }); 
-    
     function History(con){
         db.query("Select nick, wiadomosc From `chat`", (erro, res) => {
             if(erro){throw erro;}
@@ -46,6 +44,7 @@ io.on('connection', (socket) => {
 
     socket.on('userJoin', (name) => {
         console.log(`${name} dołączył`)
+        db.query(`Insert Into chat(nick, wiadomosc) Values ('${name}', 'dołączył na chat')`)
         io.emit('userJoin', name)
     });
 });

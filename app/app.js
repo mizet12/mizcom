@@ -144,10 +144,13 @@ function saveNick() {
     const socket = io("ws://localhost:8080");
     socket.on("chatHistory", (nick, tekst) =>{
         let text = changeEmojis(tekst); 
-        if(imageReg.test(text) == true){
-            if(userNick !== nickInput.value){
-                return;
-            }
+        
+        if(text == "dołączył na chat"){
+            const el = document.createElement("div");
+            el.classList.add("announcment");
+            el.innerText = `${nick} dołączył na chat`;
+            messagesContainer.appendChild(el);
+        }else if(imageReg.test(text) == true){
             const image = document.createElement("img");
             const el = document.createElement("div");
             el.classList.add("mess")
@@ -158,9 +161,6 @@ function saveNick() {
             el.appendChild(image);
             messagesContainer.appendChild(el);
         }else if(linkReg.test(text) == true){
-            if(userNick !== nickInput.value){
-                return;
-            }
             const a = document.createElement("a");
             const el = document.createElement("div");
             // el.classList.add("links");
@@ -182,7 +182,8 @@ function saveNick() {
         let text = changeEmojis(tekst);
         if(imageReg.test(text) == true){
             if(userNick !== nickInput.value){
-                return;
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
             }
             const image = document.createElement("img");
             const el = document.createElement("div");
@@ -198,7 +199,8 @@ function saveNick() {
             }
         }else if(linkReg.test(text) == true){
             if(userNick !== nickInput.value){
-                return;
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
             }
             const a = document.createElement("a");
             const el = document.createElement("div");
@@ -213,7 +215,8 @@ function saveNick() {
             }
         }else if(text == "👒🏴‍☠🍖" || text == "🍖🏴‍☠👒" || text == "🏴‍☠🍖👒" || text == "🏴‍☠👒🍖" || text == "🍖👒🏴‍☠" || text == "👒🍖🏴‍☠"){
             if(userNick !== nickInput.value){
-                return;
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
             }
             document.getElementById("op").play();
             const el = document.createElement("div");
@@ -230,8 +233,10 @@ function saveNick() {
             }
         }else if(text == "🍆🍑" || text == "🍑🍆"){
             if(userNick !== nickInput.value){
-                return;
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
             }
+            document.getElementById("moan").play();
             const el = document.createElement("div");
             el.classList.add("message");
             el.innerText = `${nick}: ${text}`;
@@ -246,7 +251,8 @@ function saveNick() {
             }
         }else{
             if(userNick !== nickInput.value){
-                return;
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
             }
             const el = document.createElement("div");
             el.classList.add("message");

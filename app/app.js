@@ -129,7 +129,7 @@ function saveNick() {
             }  if(tekst.includes(":mugiwara:")){
                 tekst = tekst.replace(":mugiwara:", "👒")
             }  if(tekst.includes(":pirate:")){
-                tekst = tekst.replace(":pirate:", "🏴‍☠")
+                tekst = tekst.replace(":pirate:", "🏴")
             }  if(tekst.includes(":meat:")){
                 tekst = tekst.replace(":meat:", "🍖")
             }  if(tekst.includes(":dragon:")){
@@ -149,6 +149,7 @@ function saveNick() {
         const el = document.createElement("div");
         el.innerText = `${nick}: ${text}`;
         messagesContainer.appendChild(el);
+        scrollToBottom();
     })
     socket.on("sendMessage", (nick, tekst) => {
         let text = changeEmojis(tekst);
@@ -370,8 +371,8 @@ function sendMessage(name, tekst) {
         tekst = tekst.replace("🎧", ":headphones:")
     }  if(tekst.includes("👒")){
         tekst = tekst.replace("👒", ":mugiwara:")
-    }  if(tekst.includes("🏴‍☠")){
-        tekst = tekst.replace("🏴‍☠", ":pirate:")
+    }  if(tekst.includes("🏴")){
+        tekst = tekst.replace("🏴", ":pirate:")
     }  if(tekst.includes("🍖")){
         tekst = tekst.replace("🍖", ":meat:")
     }  if(tekst.includes("🐉")){

@@ -225,7 +225,8 @@ function saveNick() {
             messagesContainer.appendChild(el);
             const image = document.createElement("img");
             const op = document.createElement("div");
-            image.src = "media/One_piece.png";
+            image.classList.add("imageMessage")
+            image.src = "media/luffy.gif";
             op.appendChild(image);
             messagesContainer.appendChild(op);
             if(nick !== nickData){

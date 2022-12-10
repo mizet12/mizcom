@@ -143,13 +143,40 @@ function saveNick() {
     
     const socket = io("ws://localhost:8080");
     socket.on("chatHistory", (nick, tekst) =>{
-
-        let text = changeEmojis(tekst);  
+        let text = changeEmojis(tekst); 
+        if(imageReg.test(text) == true){
+            if(userNick !== nickInput.value){
+                return;
+            }
+            const image = document.createElement("img");
+            const el = document.createElement("div");
+            el.classList.add("mess")
+            image.classList.add("imageMessage")
+            image.src = `${text}`;
+            el.innerText = `${nick}:`;
             
-        const el = document.createElement("div");
-        el.innerText = `${nick}: ${text}`;
-        messagesContainer.appendChild(el);
+            el.appendChild(image);
+            messagesContainer.appendChild(el);
+        }else if(linkReg.test(text) == true){
+            if(userNick !== nickInput.value){
+                return;
+            }
+            const a = document.createElement("a");
+            const el = document.createElement("div");
+            // el.classList.add("links");
+            a.href = `${text}`;
+            el.innerText = `${nick}: `;
+            a.innerText = `${text}`;
+            el.appendChild(a);
+            messagesContainer.appendChild(el);
+        }else{
+            const el = document.createElement("div");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+        }
         scrollToBottom();
+
+        
     })
     socket.on("sendMessage", (nick, tekst) => {
         let text = changeEmojis(tekst);
@@ -159,7 +186,8 @@ function saveNick() {
             }
             const image = document.createElement("img");
             const el = document.createElement("div");
-            // el.classList.add("links");
+            el.classList.add("mess")
+            image.classList.add("imageMessage")
             image.src = `${text}`;
             el.innerText = `${nick}:`;
             

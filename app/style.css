@@ -110,3 +110,6 @@
 .emojis:hover{
     cursor: pointer;
 }
+.mess{
+    display: flex;
+}

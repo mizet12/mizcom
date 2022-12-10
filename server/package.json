@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "await": "^0.2.6",
     "mysql": "^2.18.1",
     "socket.io": "^4.5.4"
   }

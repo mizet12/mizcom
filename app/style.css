@@ -2,7 +2,7 @@
     display: none;
     bottom: 10px;
     position: fixed;
-    width: 90%;
+    width: 100%;
     font-size: xx-large;
     margin-top: 10px;
     height: 7%;
@@ -50,7 +50,7 @@
 
 .announcment{
     color: orangered;
-    font-size: 150%;
+    font-size: 115%;
 }
 
 #messages{
@@ -62,7 +62,7 @@
 }
 
 #text{
-    width: 100%;
+    width: 85%;
     font-size: xx-large;
     border-radius: 15px;
 }
@@ -97,6 +97,7 @@
     overflow-y: auto;
     scroll-behavior: smooth;
 }
+
 #emoji_div::-webkit-scrollbar{
     display: none;
 }
@@ -107,17 +108,22 @@
     left: 0px;
     float: left;
 }
+
 .emojis:hover{
     cursor: pointer;
 }
+
 .mess{
     display: flex;
 }
+
 .imageMessage{
     max-width: 300px;
     max-height: 300px;
 }
+
 iframe{
     height: 315px;
     width: 600px;
+    background-color:rgb(0, 0, 118);
 }

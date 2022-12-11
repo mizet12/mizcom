@@ -658,6 +658,7 @@ switchModeButton.addEventListener('click', () => {
         joinChatButton.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(102, 102, 102)";
         emojiButton.style.border = isDarkModeEnabled ? "1px solid black" : "1px solid white";
         emojiDiv.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(88, 88, 88)";
+        document.querySelector("a").style.color = isDarkModeEnabled ? "#" : "rgb(0, 0, 118)"
     });
 
     switchModeButton.src = isDarkModeEnabled ? "icons/dark_mode.png" : "icons/light_mode.jpg";

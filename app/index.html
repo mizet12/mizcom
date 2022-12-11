@@ -10,6 +10,7 @@
 </head>
 <body>
     <button id="switch"><img src="icons/dark_mode.png" alt="Dark_mode" id="switch_image"></button>
+
     <div id="messages"></div>
     
     <div id="join_form">
@@ -17,6 +18,7 @@
         <input type="text" id="nick"><br>
         <button onclick="saveNick()" id="joinChat"><h4>Dołącz do chatu</h4></button>
     </div>
+
     <div id="emoji_div">
         <h1 class="emojis" id="hamburger">🍔</h1>
         <h1 class="emojis" id="happy">😀</h1>
@@ -72,18 +74,19 @@
         <h1 class="emojis" id="meat">🍖</h1>
         <h1 class="emojis" id="dragon">🐉</h1>
         <h1 class="emojis" id="jingyang">☯</h1>
-
-
     </div>
+
     <div id="message_form">
         <input type="text" placeholder="Napisz wiadomość na chatcie" id="text"><button id="emoji_button"><img src="icons/emoji_d.png" alt="" id="emoji_image"></button>
-    </div>
+    </div> 
+
     <audio id="op">
         <source src="media/op.mp3" type="audio/mp3">
     </audio>
     <audio id="moan">
         <source src="media/Moan.mp3" type="audio/mp3">
     </audio>
+
     <script src="app.js"></script>
 </body>
 </html>

@@ -38,6 +38,7 @@ io.on('connection', (socket) => {
     }
     socket.on('sendMessage', (name, text) => {
         console.log(name, text);
+        
         db.query(`Insert INTO chat(nick, wiadomosc) Values ('${name}', '${text}');`)
         io.emit('sendMessage', name, text)
     });

@@ -117,3 +117,7 @@
     max-width: 300px;
     max-height: 300px;
 }
+iframe{
+    height: 315px;
+    width: 600px;
+}

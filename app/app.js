@@ -5,6 +5,7 @@ const messageForm = document.getElementById("message_form");
 const messagesContainer = document.getElementById("messages");
 const linkReg = /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/;
 const imageReg = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/;
+const youTubeReg = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/
 
 
 
@@ -135,17 +136,43 @@ function saveNick() {
             }  if(tekst.includes(":dragon:")){
                 tekst = tekst.replace(":dragon:", "🐉")
             }  if(tekst.includes(":yinyang:")){
-                tekst = tekst.replace(":yinyang:", "☯", )
+                tekst = tekst.replace(":yinyang:", "☯")
             }
             return text = tekst;
     }
 
+    function addStr(str, index, stringToAdd){
+        return str.substring(0, index) + stringToAdd + str.substring(index, str.length);
+    }
     
     const socket = io("ws://localhost:8080");
     socket.on("chatHistory", (nick, tekst) =>{
         let text = changeEmojis(tekst); 
         
-        if(text == "dołączył na chat"){
+        if(youTubeReg.test(text)){
+            const iframe = document.createElement("iframe")
+            const el = document.createElement("div");
+            const a = document.createElement("a")
+            el2 = document.createElement("div")
+            a.href = `${text}`;
+            if(text.includes("https")){
+                text = addStr(text, 24, "embed/");
+            } else if(text.includes("http")){
+                text = addStr(text, 23, "embed/");
+            }
+            if(text.includes("watch?v=")){
+                text = text.replace("watch?v=", "")
+            }
+            a.innerText = `${text}`;
+            el.innerText = `${nick}: `;
+            el.appendChild(a);
+            iframe.src = `${text}`;
+            iframe.allow = "autoplay; encrypted-media";
+            iframe.allowFullscreen = "1";
+            el2.appendChild(el);
+            el2.appendChild(iframe);
+            messagesContainer.appendChild(el2)
+        }else if(text == "dołączył na chat"){
             const el = document.createElement("div");
             el.classList.add("announcment");
             el.innerText = `${nick} dołączył na chat`;
@@ -180,7 +207,30 @@ function saveNick() {
     })
     socket.on("sendMessage", (nick, tekst) => {
         let text = changeEmojis(tekst);
-        if(imageReg.test(text) == true){
+        if(youTubeReg.test(text)){
+            const iframe = document.createElement("iframe")
+            const el = document.createElement("div");
+            const a = document.createElement("a")
+            el2 = document.createElement("div")
+            a.href = `${text}`;
+            if(text.includes("https")){
+                text = addStr(text, 24, "embed/");
+            } else if(text.includes("http")){
+                text = addStr(text, 23, "embed/");
+            }
+            if(text.includes("watch?v=")){
+                text = text.replace("watch?v=", "")
+            }
+            a.innerText = `${text}`;
+            el.innerText = `${nick}: `;
+            el.appendChild(a);
+            iframe.src = `${text}`;
+            iframe.allow = "autoplay; encrypted-media";
+            iframe.allowFullscreen = "1";
+            el2.appendChild(el);
+            el2.appendChild(iframe);
+            messagesContainer.appendChild(el2)
+        }else if(imageReg.test(text) == true){
             if(userNick !== nickInput.value){
                 alert("!Nie zmieniaj swojego nicku!");
                 userNick = nickInput.value;

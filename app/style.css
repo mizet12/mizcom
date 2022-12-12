@@ -96,6 +96,7 @@
     border-radius: 10%;
     overflow-y: auto;
     scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 #emoji_div::-webkit-scrollbar{

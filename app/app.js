@@ -196,7 +196,82 @@ function saveNick() {
             a.innerText = `${text}`;
             el.appendChild(a);
             messagesContainer.appendChild(el);
+        }else if(text == "🍜🍥" || text == "🍥🍜"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/naruto.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(text == "👺👹" || text == "👹👺"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/demon-slayer.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(text == "🐉☯" || text == "☯🐉"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/goku.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(text == "👒🏴‍☠🍖" || text == "🍖🏴‍☠👒" || text == "🏴‍☠🍖👒" || text == "🏴‍☠👒🍖" || text == "🍖👒🏴‍☠" || text == "👒🍖🏴‍☠"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/luffy.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
         }else{
+            if(text.includes("nigger")){
+                text = text.replace("nigger", "n-word");
+            }
             const el = document.createElement("div");
             el.innerText = `${nick}: ${text}`;
             messagesContainer.appendChild(el);
@@ -300,10 +375,67 @@ function saveNick() {
             if(nick !== nickData){
                 showNotifications();
             }
+        }else if(text == "🍜🍥" || text == "🍥🍜"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/naruto.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(text == "👺👹" || text == "👹👺"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/demon-slayer.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
+        }else if(text == "🐉☯" || text == "☯🐉"){
+            if(userNick !== nickInput.value){
+                alert("!Nie zmieniaj swojego nicku!");
+                userNick = nickInput.value;
+            }
+            const el = document.createElement("div");
+            el.classList.add("message");
+            el.innerText = `${nick}: ${text}`;
+            messagesContainer.appendChild(el);
+            const image = document.createElement("img");
+            const op = document.createElement("div");
+            image.classList.add("imageMessage")
+            image.src = "media/goku.gif";
+            op.appendChild(image);
+            messagesContainer.appendChild(op);
+            if(nick !== nickData){
+                showNotifications();
+            }
         }else{
             if(userNick !== nickInput.value){
                 alert("!Nie zmieniaj swojego nicku!");
                 userNick = nickInput.value;
+            }
+            if(text.includes("nigger")){
+                text = text.replace("nigger", "n-word");
             }
             const el = document.createElement("div");
             el.classList.add("message");
@@ -658,7 +790,7 @@ switchModeButton.addEventListener('click', () => {
         joinChatButton.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(102, 102, 102)";
         emojiButton.style.border = isDarkModeEnabled ? "1px solid black" : "1px solid white";
         emojiDiv.style.backgroundColor = isDarkModeEnabled ? "rgb(207, 207, 207)" : "rgb(88, 88, 88)";
-        document.querySelector("a").style.color = isDarkModeEnabled ? "#" : "rgb(0, 0, 118)"
+        // document.querySelector("a").style.color = isDarkModeEnabled ? "#" : "rgb(0, 0, 118)";
     });
 
     switchModeButton.src = isDarkModeEnabled ? "icons/dark_mode.png" : "icons/light_mode.jpg";
